@@ -11,11 +11,25 @@ if (!process.env.CLERK_PUBLISHABLE_KEY && process.env.VITE_CLERK_PUBLISHABLE_KEY
 const connectDB = require("./config/db");
 
 const app = express();
-const clientOrigin = process.env.CLIENT_URL || "http://localhost:5173";
+const allowedOrigins = [
+  process.env.CLIENT_URL,
+  process.env.CLIENT_ORIGIN,
+  ...(process.env.CLIENT_URLS || "").split(","),
+  "http://localhost:5173",
+  "http://127.0.0.1:5173",
+]
+  .map((origin) => origin?.trim())
+  .filter(Boolean);
 
 app.use(
   cors({
-    origin: clientOrigin,
+    origin(origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      return callback(new Error(`CORS blocked for origin: ${origin}`));
+    },
     credentials: true,
   })
 );
