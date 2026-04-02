@@ -21,35 +21,10 @@ const allowedOrigins = [
   .map((origin) => origin?.trim())
   .filter(Boolean);
 
-function isAllowedOrigin(origin) {
-  if (!origin) {
-    return true;
-  }
-
-  if (allowedOrigins.includes(origin)) {
-    return true;
-  }
-
-  try {
-    const { hostname, protocol } = new URL(origin);
-
-    if (protocol === "https:" && hostname.endsWith(".vercel.app")) {
-      return (
-        hostname === "travel-nest-client-two.vercel.app" ||
-        hostname.startsWith("travel-nest-client-")
-      );
-    }
-  } catch (error) {
-    return false;
-  }
-
-  return false;
-}
-
 app.use(
   cors({
     origin(origin, callback) {
-      if (isAllowedOrigin(origin)) {
+      if (!origin || allowedOrigins.includes(origin)) {
         return callback(null, true);
       }
 
