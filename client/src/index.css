@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+  font-family: "Aptos", "Trebuchet MS", sans-serif;
+  --bg-0: #040814;
+  --bg-1: #0a1020;
+  --bg-2: #121a31;
+  --surface: rgba(10, 16, 32, 0.68);
+  --surface-strong: rgba(15, 23, 42, 0.84);
+  --line: rgba(255, 255, 255, 0.1);
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --cyan: #67e8f9;
+  --blue: #60a5fa;
+  --violet: #c084fc;
+  --fuchsia: #f0abfc;
+  --emerald: #6ee7b7;
+  background:
+    radial-gradient(circle at top left, rgba(34, 211, 238, 0.18), transparent 30%),
+    radial-gradient(circle at top right, rgba(232, 121, 249, 0.14), transparent 26%),
+    linear-gradient(135deg, var(--bg-0) 0%, var(--bg-1) 44%, #050816 100%);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(14, 165, 233, 0.18), transparent 18%),
+    radial-gradient(circle at 85% 15%, rgba(217, 70, 239, 0.15), transparent 18%),
+    radial-gradient(circle at 50% 80%, rgba(56, 189, 248, 0.08), transparent 24%),
+    linear-gradient(160deg, var(--bg-0) 0%, var(--bg-1) 48%, #040712 100%);
+  color: var(--text);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.glass-panel {
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.78), rgba(15, 23, 42, 0.42));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(18px);
+}
+
+.leaflet-container {
+  background: #020617;
+  font-family: "Aptos", "Trebuchet MS", sans-serif;
+}
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background: rgba(15, 23, 42, 0.96);
+  color: #e2e8f0;
+}
+
+.display-type {
+  font-family: "Bahnschrift", "Aptos", "Segoe UI", sans-serif;
+  letter-spacing: -0.04em;
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, -18px, 0) scale(1.04);
+  }
+}
+
+@keyframes float-delayed {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, 16px, 0) scale(0.98);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 0 rgba(232, 121, 249, 0));
+  }
+  50% {
+    filter: drop-shadow(0 0 12px rgba(232, 121, 249, 0.45));
+  }
+}
+
+@keyframes grid-pan {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(40px, 40px, 0);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 9s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-delayed 11s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2.8s ease-in-out infinite;
+}
+
+.animate-grid-pan {
+  animation: grid-pan 24s linear infinite;
+}
+
+::selection {
+  background: rgba(34, 211, 238, 0.3);
+  color: #f8fafc;
+}
